@@ -26,7 +26,11 @@ CREATE TABLE Hitting(
 	SF SMALLINT,
 	OBP FLOAT,
 	SG FLOAT,
-	OPS FLOAT
+	OPS FLOAT,
+    player_id INT,
+    PRIMARY KEY(player_id),
+    FOREIGN KEY(player_id)
+        REFERENCES Roster(player_id)
 );
 
 CREATE TABLE Pitching(
@@ -40,5 +44,9 @@ CREATE TABLE Pitching(
 	BB SMALLINT,
 	SO SMALLINT,
 	ERA FLOAT,
-	WHIP FLOAT
+	WHIP FLOAT,
+    player_id INT,
+    PRIMARY KEY(player_id),
+    FOREIGN KEY(player_id)
+        REFERENCES Roster(player_id)
 );
