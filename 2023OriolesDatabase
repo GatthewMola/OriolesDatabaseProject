@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS Roster;
-DROP TABLE IF EXISTS Hitting;
-DROP TABLE IF EXISTS Pitching;
-DROP TABLE IF EXISTS Fielding;
+DROP TABLE IF EXISTS Roster CASCADE;
+DROP TABLE IF EXISTS Hitting CASCADE;
+DROP TABLE IF EXISTS Pitching CASCADE;
+DROP TABLE IF EXISTS Fielding CASCADE;
 
 
 CREATE TABLE Roster(
@@ -10,7 +10,8 @@ CREATE TABLE Roster(
 	last_name VARCHAR(50) NOT NULL,
 	age SMALLINT,
 	bats VARCHAR(10),
-	throws VARCHAR(10)
+	throws VARCHAR(10),
+    position VARCHAR(3)
 );
 
 CREATE TABLE Hitting(
@@ -27,7 +28,7 @@ CREATE TABLE Hitting(
 	OBP FLOAT,
 	SG FLOAT,
 	OPS FLOAT,
-    player_id INT,
+    player_id INT UNIQUE,
     PRIMARY KEY(player_id),
     FOREIGN KEY(player_id)
         REFERENCES Roster(player_id)
@@ -45,8 +46,20 @@ CREATE TABLE Pitching(
 	SO SMALLINT,
 	ERA FLOAT,
 	WHIP FLOAT,
-    player_id INT,
+    player_id INT UNIQUE,
     PRIMARY KEY(player_id),
     FOREIGN KEY(player_id)
         REFERENCES Roster(player_id)
+);
+
+CREATE TABLE Fielding(
+	player_id INT UNIQUE,
+		PRIMARY KEY(player_id),
+		FOREIGN KEY(player_id)
+			REFERENCES Roster(player_id),
+	position VARCHAR(3),
+	TC SMALLINT,
+	E SMALLINT,
+	PO SMALLINT,
+	A SMALLINT
 );
