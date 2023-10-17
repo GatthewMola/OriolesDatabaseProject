@@ -1,3 +1,6 @@
+/* Data source for Roster, Pitching, and Hitting Tables: mlb.com/orioles/stats */
+/* Data source for Fielding Table: cbssports.com/mlb/teams/BAL/baltimore-orioles/stats/ */
+
 DROP TABLE IF EXISTS Roster CASCADE;
 DROP TABLE IF EXISTS Hitting CASCADE;
 DROP TABLE IF EXISTS Pitching CASCADE;
@@ -58,7 +61,7 @@ CREATE TABLE Hitting(
 INSERT INTO Hitting(player_id,AB,H,AVG,Doubles,Triples,HR,BB,OBP,SLG,OPS) VALUES
 (8,207,46,.222,14,0,6,9,.269,.377,.646),
 (9,588,163,.277,31,1,20,92,.374,.435,.809),
-(10,412,99,.240,99,21,2,13,32,.300,.396,.696),
+(10,412,99,.240,21,2,13,32,.300,.396,.696),
 (11,560,143,.255,29,9,28,56,.325,.489,.814),
 (12,318,69,.217,14,2,7,22,.267,.340,.607),
 (13,423,114,.270,21,1,18,37,.328,.452,.780),
@@ -117,7 +120,7 @@ INSERT INTO Fielding(player_id,position,TC,E,PO,A) VALUES
 (13,'1B',15,0,13,2),
 (15,'3B',0,0,0,0),
 (16,'2B',3,0,2,1),
-(17,'LF'8,0,8,0),
+(17,'LF',8,0,8,0),
 (18,'CF',3,0,3,0),
 (19,'CF',11,0,11,0),
 (20,'RF',2,0,2,0);
