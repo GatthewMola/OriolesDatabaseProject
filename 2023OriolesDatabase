@@ -14,6 +14,7 @@ CREATE TABLE Roster(
     position VARCHAR(3)
 );
 
+/* While players may play multiple positions, I have locked all players into a single position to keep the data cleaner. */
 INSERT INTO Roster(first_name,last_name,position,bats,throws,age) VALUES
 ('Felix','Bautista','RP','R','R',28),
 ('Kyle','Bradish','SP','R','R',27),
@@ -96,13 +97,27 @@ INSERT INTO Pitching(player_id,IP,H,HR,ER,HB,BB,SO,ERA,WHIP) VALUES
 (7,122.0,121,16,59,2,42,129,1.34,4.35);
 
 CREATE TABLE Fielding(
-	player_id INT UNIQUE,
-		PRIMARY KEY(player_id),
-		FOREIGN KEY(player_id)
-			REFERENCES Roster(player_id),
 	position VARCHAR(3),
 	TC SMALLINT,
 	E SMALLINT,
 	PO SMALLINT,
-	A SMALLINT
+	A SMALLINT,
+    player_id INT UNIQUE,
+		PRIMARY KEY(player_id),
+		FOREIGN KEY(player_id)
+			REFERENCES Roster(player_id)
 );
+
+/* Per the note before the Roster table creation, I am only including Fielding stats for players under the position I have locked them into. */
+INSERT INTO Fielding(player_id,position,TC,E,PO,A) VALUES
+(9,'C',30,0,29,1),
+(10,'2B',3,0,2,1),
+(11,'3B',3,0,1,2),
+(12,'SS',6,0,1,5),
+(13,'1B',15,0,13,2),
+(15,'3B',0,0,0,0),
+(16,'2B',3,0,2,1),
+(17,'LF'8,0,8,0),
+(18,'CF',3,0,3,0),
+(19,'CF',11,0,11,0),
+(20,'RF',2,0,2,0);
