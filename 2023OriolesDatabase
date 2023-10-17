@@ -86,6 +86,15 @@ CREATE TABLE Pitching(
         REFERENCES Roster(player_id)
 );
 
+INSERT INTO Pitching(player_id,IP,H,HR,ER,HB,BB,SO,ERA,WHIP) VALUES
+(1,61.0,30,4,10,2,26,110,.92,1.48),
+(2,168.2,132,14,53,8,44,168,1.04,2.83),
+(3,72.2,60,4,17,3,13,65,1.00,2.11),
+(4,51.1,45,4,16,2,12,58,1.11,2.81),
+(5,192.0,198,23,101,6,55,157,1.32,4.73),
+(6,53.1,56,2,21,4,27,44,1.56,3.54),
+(7,122.0,121,16,59,2,42,129,1.34,4.35);
+
 CREATE TABLE Fielding(
 	player_id INT UNIQUE,
 		PRIMARY KEY(player_id),
