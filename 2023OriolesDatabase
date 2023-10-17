@@ -14,19 +14,39 @@ CREATE TABLE Roster(
     position VARCHAR(3)
 );
 
+INSERT INTO Roster(first_name,last_name,position,bats,throws,age) VALUES
+('Felix','Bautista','RP','R','R',28),
+('Kyle','Bradish','SP','R','R',27),
+('Yennier','Cano','RP','R','R',29),
+('Danny','Coulombe','RP','L','L',33),
+('Kyle','Gibson','SP','R','R',35),
+('Cionel','Perez','RP','R','L',27),
+('Grayson','Rodriguez','SP','L','R',23),
+('James','McCann','C','R','R',33),
+('Adley','Rutschman','C','S','R',25),
+('Adam','Frazier','2B','L','R',31),
+('Gunnar','Henderson','3B','L','R',22),
+('Jorge','Mateo','SS','R','R',28),
+('Ryan','Mountcastle','1B','R','R',26),
+('Ryan','OHearn','1B','L','L',30),
+('Ramon','Urias','3B','R','R',29),
+('Jordan','Westburg','2B','R','R',24),
+('Austin','Hays','LF','R','R',28),
+('Aaron','Hicks','CF','S','R',34),
+('Cedric','Mullins','CF','L','L',29),
+('Anthony','Santander','RF','S','R',28),
+('Heston','Kjerstad','DH','L','R',24);
+
 CREATE TABLE Hitting(
 	AB SMALLINT,
 	H SMALLINT,
     AVG FLOAT,
-	Singles SMALLINT,
 	Doubles SMALLINT,
 	Triples SMALLINT,
 	HR SMALLINT,
 	BB SMALLINT,
-	HBP SMALLINT,
-	SF SMALLINT,
 	OBP FLOAT,
-	SG FLOAT,
+	SLG FLOAT,
 	OPS FLOAT,
     player_id INT UNIQUE,
     PRIMARY KEY(player_id),
@@ -34,9 +54,23 @@ CREATE TABLE Hitting(
         REFERENCES Roster(player_id)
 );
 
+INSERT INTO Hitting(player_id,AB,H,AVG,Doubles,Triples,HR,BB,OBP,SLG,OPS) VALUES
+(8,207,46,.222,14,0,6,9,.269,.377,.646),
+(9,588,163,.277,31,1,20,92,.374,.435,.809),
+(10,412,99,.240,99,21,2,13,32,.300,.396,.696),
+(11,560,143,.255,29,9,28,56,.325,.489,.814),
+(12,318,69,.217,14,2,7,22,.267,.340,.607),
+(13,423,114,.270,21,1,18,37,.328,.452,.780),
+(14,346,100,.289,22,1,14,15,.322,.480,.802),
+(15,360,95,.264,22,3,4,27,.328,.375,.703),
+(16,208,54,.260,17,2,3,16,.311,.404,.715),
+(17,520,143,.275,36,2,16,38,.325,.444,.769),
+(18,200,55,.275,7,1,7,35,.381,.425,.806),
+(19,404,94,.233,23,3,15,43,.233,.416,.721),
+(20,591,152,.257,41,1,28,55,.325,.472,.797),
+(21,30,7,.233,1,0,2,2,.281,.467,.748);
+
 CREATE TABLE Pitching(
-	Wins SMALLINT,
-	Losses SMALLINT,
 	IP FLOAT,
 	H SMALLINT,
 	HR SMALLINT,
