@@ -52,13 +52,13 @@ CREATE TABLE Hitting(
 	OBP FLOAT,
 	SLG FLOAT,
 	OPS FLOAT,
-    player_id INT UNIQUE,
-    PRIMARY KEY(player_id),
-    FOREIGN KEY(player_id)
+    id INT UNIQUE,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id)
         REFERENCES Roster(player_id)
 );
 
-INSERT INTO Hitting(player_id,AB,H,AVG,Doubles,Triples,HR,BB,OBP,SLG,OPS) VALUES
+INSERT INTO Hitting(id,AB,H,AVG,Doubles,Triples,HR,BB,OBP,SLG,OPS) VALUES
 (8,207,46,.222,14,0,6,9,.269,.377,.646),
 (9,588,163,.277,31,1,20,92,.374,.435,.809),
 (10,412,99,.240,21,2,13,32,.300,.396,.696),
@@ -84,9 +84,9 @@ CREATE TABLE Pitching(
 	SO SMALLINT,
 	ERA FLOAT,
 	WHIP FLOAT,
-    player_id INT UNIQUE,
-    PRIMARY KEY(player_id),
-    FOREIGN KEY(player_id)
+    id INT UNIQUE,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id)
         REFERENCES Roster(player_id)
 );
 
@@ -105,9 +105,9 @@ CREATE TABLE Fielding(
 	E SMALLINT,
 	PO SMALLINT,
 	A SMALLINT,
-    player_id INT UNIQUE,
-		PRIMARY KEY(player_id),
-		FOREIGN KEY(player_id)
+    id INT UNIQUE,
+		PRIMARY KEY(id),
+		FOREIGN KEY(id)
 			REFERENCES Roster(player_id)
 );
 
@@ -124,3 +124,13 @@ INSERT INTO Fielding(player_id,position,TC,E,PO,A) VALUES
 (18,'CF',3,0,3,0),
 (19,'CF',11,0,11,0),
 (20,'RF',2,0,2,0);
+
+/* Match First Name and Last Name Columns to Hitting Table to prep for Pagination Example */
+CREATE TABLE Roster_Stats AS(
+	SELECT * FROM Hitting
+	LEFT OUTER JOIN Roster
+	ON Hitting.id=Roster.player_id
+	WHERE Roster.player_id IS NOT NULL
+);
+
+/* Pagination Example: Creating a paginated list of best Orioles hitters by their ascending batting average and respective Slugging Percentage and # of HRs. */
