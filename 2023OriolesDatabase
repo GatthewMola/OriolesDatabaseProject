@@ -133,4 +133,8 @@ CREATE TABLE Roster_Stats AS(
 	WHERE Roster.player_id IS NOT NULL
 );
 
-/* Pagination Example: Creating a paginated list of best Orioles hitters by their ascending batting average and respective Slugging Percentage and # of HRs. */
+/* Index-Pagination Example: Creating a paginated list of best Orioles hitters by their descending batting average and respective Slugging Percentage and # of HRs. */
+CREATE INDEX Roster_idx ON Roster_Stats USING btree(avg);
+	SELECT first_name,last_name,avg,hr,slg FROM Roster_Stats
+	ORDER BY avg DESC
+	LIMIT 3;
